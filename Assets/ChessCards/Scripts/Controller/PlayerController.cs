@@ -46,7 +46,9 @@ namespace ChessCards
 
 			_matchSystem.TryGetCard(id, out CardController card);
 			card.RectTransform.SetParent(_view.HandRectTransform);
-		}
+            card.RectTransform.anchoredPosition = Vector2.zero;
+
+        }
 
 		public void AddHandCards(List<int> ids)
 		{
