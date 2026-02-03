@@ -1,4 +1,4 @@
-//牌的花色
+
 public enum Suit
 {
     None,
@@ -8,7 +8,7 @@ public enum Suit
     Club
 }
 
-//牌的点数
+
 public enum Rank
 {
     None,
@@ -17,21 +17,22 @@ public enum Rank
 }
 
 
-// 游戏状态
+
 public enum GameState
 {
-    Init,       // 初始化
-    DealCard,   // 发牌中
-    CallScore,  // 叫分中
-    DealBaseCard,// 发底牌
-    PlayCard,   // 出牌中
-    GameOver    // 游戏结束
+	Init,
+	Prepare, 
+    DealCard,   
+    CallScore,  
+    DealBaseCard, 
+    PlayCard,   
+    GameOver     
 }
 
-// 玩家类型
-public enum PlayerType
+
+public enum PlayerRole
 {
     None,
-    Landlord,   // 地主
-    Farmer      // 农民
+    Landlord,   
+    Farmer      
 }

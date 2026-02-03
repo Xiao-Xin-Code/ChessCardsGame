@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ChessCards
 {
-    public class BaseView : IView
+    public class BaseView : MonoBehaviour, IView
     {
         public IArchitecture GetArchitecture()
         {

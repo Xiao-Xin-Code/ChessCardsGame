@@ -7,8 +7,9 @@ namespace ChessCards
 
     public class PlayerEntity : BaseEntity
     {
-
         public int id;
+
+        public BindableProperty<PlayerRole> PlayerRole = new BindableProperty<PlayerRole>();
 
         public List<int> handCards = new List<int>();
         public List<int> selectCards = new List<int>();

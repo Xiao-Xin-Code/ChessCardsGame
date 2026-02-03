@@ -25,6 +25,13 @@ namespace ChessCards
             return matchCards.TryGetValue(id, out card);
         }
 
+        public void AddCard(int id,CardController card)
+        {
+            matchCards.Add(id, card);
+        }
+
+        public void ClearCards() => matchCards.Clear();
+
         #endregion
 
         #region Player
@@ -32,6 +39,11 @@ namespace ChessCards
         public bool TryGetPlayer(int id, out PlayerController player)
         {
             return matchPlayers.TryGetValue(id, out player);
+        }
+
+        public void AddPlayer(int id,PlayerController player)
+        {
+			matchPlayers.Add(id, player);
         }
 
         #endregion

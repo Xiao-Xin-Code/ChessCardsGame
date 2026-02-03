@@ -6,7 +6,12 @@ namespace ChessCards
     {
         protected override void Init()
         {
-            
+            RegisterSystem<AssetSystem>(new AssetSystem());
+            RegisterSystem<PoolSystem>(new PoolSystem());
+            RegisterSystem<CardLibrarySystem>(new CardLibrarySystem());
+            RegisterSystem<MatchSystem>(new MatchSystem());
+            RegisterModel<MatchModel>(new MatchModel());
+            RegisterModel<CardLibraryModel>(new CardLibraryModel());
         }
     }
 }
