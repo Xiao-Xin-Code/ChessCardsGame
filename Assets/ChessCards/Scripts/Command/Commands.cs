@@ -9,3 +9,11 @@ public class InitCardLibraryCommand : AbstractCommand
         this.SendEvent<InitCardLibraryEvent>();
     }
 }
+
+public class SetTrumpCardsCommand : AbstractCommand
+{
+    protected override void OnExecute()
+    {
+        this.SendEvent<SetTrumpCardsEvent>();
+    }
+}

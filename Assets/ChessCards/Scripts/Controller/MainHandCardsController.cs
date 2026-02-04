@@ -17,7 +17,7 @@ namespace ChessCards
 
         AssetSystem _assetSystem;
         CardLibrarySystem _cardLibrarySystem;
-        float offset = 60;
+        public float offset = 60;
 
         public override void Init()
         {
@@ -31,12 +31,13 @@ namespace ChessCards
             ID = id;
         }
 
-        private void Sort()
+
+        public void Sort()
         {
-			activeCards.Sort((a, b) => _cardLibrarySystem.GetCardEntity(a.ID).weight.CompareTo(_cardLibrarySystem.GetCardEntity(a.ID).weight));
+			activeCards.Sort((a, b) => _cardLibrarySystem.GetCardEntity(a.ID).weight.CompareTo(_cardLibrarySystem.GetCardEntity(b.ID).weight));
 		}
 
-        private void Arrange()
+        public void Arrange()
         {
             float width = _assetSystem.mainCard.RectTransform.rect.width;
 			float total_width = activeCards.Count > 0 ? width + offset * (activeCards.Count - 1) : 0;
@@ -45,7 +46,6 @@ namespace ChessCards
 			{
 				activeCards[i].RectTransform.SetSiblingIndex(i);
                 float curx = location_x + offset * i;
-                Debug.Log($"更新位置{curx}");
                 activeCards[i].RectTransform.anchoredPosition = new Vector2(curx, 0);
 			}
 		}

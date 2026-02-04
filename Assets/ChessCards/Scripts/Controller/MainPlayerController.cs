@@ -30,6 +30,25 @@ namespace ChessCards
 		}
 
 
+
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                handCards.Sort();
+                handCards.Arrange();
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                _matchSystem.TryGetPlayerEntity(ID, out PlayerEntity entity);
+                entity.SetRole(PlayerRole.Landlord);
+            }
+        }
+
+
+
         public void SetId(int id)
         {
             ID = id;
@@ -42,7 +61,18 @@ namespace ChessCards
 			{
 				_view.UpdateRole(sprite);
 			}
-		}
+            
+            if(role == PlayerRole.Landlord)
+            {
+                _matchSystem.TryGetPlayerEntity(ID, out PlayerEntity entity);
+
+                foreach (var card in _cardLibrarySystem.TrumpCards)
+                {
+                    entity.AddHandCard(card);
+                    entity.AddSelectCard(card);
+                }
+            }
+        }
 
 
 		#region HandCards操作

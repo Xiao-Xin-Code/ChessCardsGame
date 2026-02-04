@@ -39,7 +39,7 @@ namespace ChessCards
 
             for(int i = 0; i < activeCards.Count; i++)
             {
-                activeCards[i].anchoredPosition -= offset;
+                activeCards[i].anchoredPosition += offset;
 			}
         }
 

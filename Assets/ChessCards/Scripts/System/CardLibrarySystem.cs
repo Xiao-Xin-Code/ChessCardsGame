@@ -10,6 +10,10 @@ namespace ChessCards
 	{
 		CardLibraryModel _cardLibraryModel;
 
+
+		public List<int> TrumpCards { get => _cardLibraryModel.trumpCards; set => _cardLibraryModel.trumpCards = value; }
+
+
 		protected override void OnInit()
 		{
 			_cardLibraryModel = this.GetModel<CardLibraryModel>();
@@ -72,8 +76,19 @@ namespace ChessCards
 					_cardLibraryModel.cards.Add(id, cardEntity);
 					_cardLibraryModel.cardLibrary.Add(id);
 				}
-			}
-			Shuffle();
+            }
+            id++;
+            CardEntity joker_small = new CardEntity(id, Suit.None, Rank.JokerSmall, (int)Rank.JokerSmall);
+            _cardLibraryModel.cards.Add(id, joker_small);
+            _cardLibraryModel.cardLibrary.Add(id);
+            id++;
+            CardEntity joker_big = new CardEntity(id, Suit.None, Rank.JokerBig, (int)Rank.JokerBig);
+            _cardLibraryModel.cards.Add(id, joker_big);
+            _cardLibraryModel.cardLibrary.Add(id);
+
+
+
+            Shuffle();
 		}
 
 		private void Shuffle()
@@ -89,6 +104,13 @@ namespace ChessCards
 				n--;
 			}
 		}
+
+		private void InitTrumpCards(List<int> trumpCards)
+		{
+			_cardLibraryModel.trumpCards = trumpCards;
+		}
+
+
         
     }
 

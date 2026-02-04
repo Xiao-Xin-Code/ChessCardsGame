@@ -65,6 +65,7 @@ namespace ChessCards
             ID = entity.id;
             if (_assetSystem.TryGetRankIcon($"{entity.suit}_{entity.rank}", out Sprite sprite)) 
             {
+                Debug.Log("´æÔÚ¸üĞÂ");
                 _view.UpdateIcon(sprite);
             }
         }

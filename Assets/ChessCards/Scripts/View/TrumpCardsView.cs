@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +11,7 @@ namespace ChessCards
 
 		public void SetTrumpCards(List<Sprite> sprites)
 		{
+			Debug.Log(sprites.Count);
 			for(int i = 0; i < trumpCards.Length; i++)
 			{
 				trumpCards[i].sprite = sprites[i];

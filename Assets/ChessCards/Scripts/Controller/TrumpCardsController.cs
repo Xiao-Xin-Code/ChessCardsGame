@@ -1,3 +1,4 @@
+using QMVC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,40 @@ namespace ChessCards
 {
     public class TrumpCardsController : MonoController
     {
+        [SerializeField] TrumpCardsView _view;
         TrumpCardsEntity _entity;
+        CardLibrarySystem _cardLibrarySystem;
+        AssetSystem _assetSystem;
 
         public override void Init()
         {
-            
+            _cardLibrarySystem = this.GetSystem<CardLibrarySystem>();
+            _assetSystem = this.GetSystem<AssetSystem>();
+
+            this.RegisterEvent<SetTrumpCardsEvent>(SetTrumpCards);
         }
 
 
 
-        private void SetTrumpCards(List<int> trumpCards)
+        
+
+
+        private void SetTrumpCards(SetTrumpCardsEvent evt)
         {
-            foreach (var item in trumpCards) 
+            List<Sprite> sprites = new List<Sprite>();
+            foreach (var item in _cardLibrarySystem.TrumpCards) 
             {
-                _entity.trumpCards.Add(item);
-			}
+                if(_cardLibrarySystem.TryGetCardEntity(item, out CardEntity cardEntity))
+                {
+                    if (_assetSystem.TryGetRankIcon($"{cardEntity.suit}_{cardEntity.rank}", out Sprite sprite))
+                    {
+                        Debug.Log("Ìí¼Óµ×ÅÆ" + sprite.name);
+                        sprites.Add(sprite);
+                    }
+                }
+            }
+
+            _view.SetTrumpCards(sprites);
         }
 
     }

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using QMVC;
-using UnityEditor;
 using UnityEngine;
 
 namespace ChessCards
@@ -67,13 +65,11 @@ namespace ChessCards
 
 		private void DealCards()
 		{
-            Debug.Log("∑÷≈‰" + _matchModel.players.Count);
 			int start = Random.Range(0, _matchModel.players.Count);
 			int count = Consts.TOTAL_CARD_COUNT - Consts.BASE_CARD_COUNT;
 
 			for (int i = 0; i < count; i++)
 			{
-                Debug.Log(start);
                 if (_matchSystem.TryGetPlayerEntity(_matchModel.players[start], out PlayerEntity playerEntity)) 
 				{
 					if (_cardLibrarySystem.TryPop(out int id))
@@ -92,8 +88,12 @@ namespace ChessCards
 					trumpCards.Add(id);
 				}
             }
+            _cardLibrarySystem.TrumpCards = trumpCards;
             //∏¸–¬Trump
-		}
+
+            this.SendCommand<SetTrumpCardsCommand>();
+
+        }
 
 
         

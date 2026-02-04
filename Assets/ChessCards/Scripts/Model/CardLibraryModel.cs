@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using QMVC;
-using UnityEngine;
 
 namespace ChessCards
 {
@@ -12,6 +10,7 @@ namespace ChessCards
 
 
         public List<int> cardLibrary = new List<int>();
+        public List<int> trumpCards = new List<int>();
 
         protected override void OnInit()
         {

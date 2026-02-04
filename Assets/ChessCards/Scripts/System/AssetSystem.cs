@@ -24,6 +24,13 @@ namespace ChessCards
             {
                 roleMap.Add(item.name, item);
             }
+
+            Sprite[] ranks = Resources.LoadAll<Sprite>("Icons/Ranks");
+            foreach (var item in ranks)
+            {
+                Debug.Log("Ìí¼Ó" + item.name);
+                rankIcons.Add(item.name, item);
+            }
         }
 
 
@@ -35,6 +42,7 @@ namespace ChessCards
 
         public bool TryGetRankIcon(string rank, out Sprite sprite)
         {
+            Debug.Log(rank+rankIcons.ContainsKey(rank));
             return rankIcons.TryGetValue(rank, out sprite);
         }
     }
