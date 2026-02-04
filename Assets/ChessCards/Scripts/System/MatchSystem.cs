@@ -1,49 +1,35 @@
 using QMVC;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace ChessCards
 {
     public class MatchSystem : AbstractSystem
     {
-        Dictionary<int, CardController> matchCards = new Dictionary<int, CardController>();
-        Dictionary<int, PlayerController> matchPlayers = new Dictionary<int, PlayerController>();
-
-
+        MatchModel _matchModel;
 
 
         protected override void OnInit()
         {
-            
+            _matchModel = this.GetModel<MatchModel>();
         }
-
-
-
-        #region Cards²Ù×÷
-
-        public bool TryGetCard(int id, out CardController card)
-        {
-            return matchCards.TryGetValue(id, out card);
-        }
-
-        public void AddCard(int id,CardController card)
-        {
-            matchCards.Add(id, card);
-        }
-
-        public void ClearCards() => matchCards.Clear();
-
-        #endregion
 
         #region Player
 
-        public bool TryGetPlayer(int id, out PlayerController player)
+        public bool TryGetLocalEntity(out PlayerEntity localEntity)
         {
-            return matchPlayers.TryGetValue(id, out player);
+			return _matchModel.playerEntitys.TryGetValue(_matchModel.localHome, out localEntity);
+		}
+
+        public bool TryGetPlayerEntity(int entityId,out PlayerEntity entity)
+        {
+            return _matchModel.playerEntitys.TryGetValue(entityId, out entity);
         }
 
-        public void AddPlayer(int id,PlayerController player)
+        public void AddPlayerEntity(int entityId, PlayerEntity entity)
         {
-			matchPlayers.Add(id, player);
+            _matchModel.playerEntitys.Add(entityId, entity);
+            Debug.Log("Ìí¼Ó" + entityId);
+            _matchModel.players.Add(entityId);
         }
 
         #endregion

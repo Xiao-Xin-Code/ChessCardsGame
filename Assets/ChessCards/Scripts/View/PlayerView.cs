@@ -10,9 +10,15 @@ namespace ChessCards
     {
         [SerializeField] Image roleImage;
 
+        [SerializeField] RectTransform rectTransform;
+
         [SerializeField] RectTransform handRectTransform;
 
+
+        public RectTransform RectTransform { get => rectTransform; }
+
         public RectTransform HandRectTransform { get => handRectTransform; }
+
 
 
         public void UpdateRole(Sprite sprite)

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+using QMVC;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,16 +14,13 @@ namespace ChessCards
         MatchModel _matchModel;
 
         [SerializeField] CardView _view;
-        CardEntity _entity;
 
 
         #region ÊôÐÔ
 
         public RectTransform RectTransform { get => _view.RectTransform; }
 
-        public int ID { get => _entity.id; set => _entity.id = value; }
-        public Suit Suit { get => _entity.suit; set => _entity.suit = value; }
-        public Rank Rank { get => _entity.rank; set => _entity.rank = value; }
+        public int ID { get; private set; }
 
 
         #endregion
@@ -32,8 +28,9 @@ namespace ChessCards
 
         public override void Init()
         {
-            _entity = new CardEntity();
-            _entity.IsSelect.Register(OnSelectCahnegd);
+            _assetSystem = this.GetSystem<AssetSystem>();
+            _matchSystem = this.GetSystem<MatchSystem>();
+
 
             _view.RegisterPointerUp(OnPointerUp);
         }
@@ -55,18 +52,21 @@ namespace ChessCards
 
         private void OnPointerUp(PointerEventData eventData)
         {
-            _entity.IsSelect.Value = !_entity.IsSelect.Value;
-            _matchSystem.TryGetPlayer(_matchModel.curHome,out PlayerController player);
-            player.AddSelectCard(_entity.id);
+            if(_matchSystem.TryGetLocalEntity(out PlayerEntity localHome))
+            {
+                localHome.AddSelectCard(ID);
+            }
 
 		}
 
 
-
-
-        public void UpdateIcon()
+        public void SetEntity(CardEntity entity)
         {
-            Debug.Log($"¸üÐÂ{_entity.suit}_{_entity.rank}");
+            ID = entity.id;
+            if (_assetSystem.TryGetRankIcon($"{entity.suit}_{entity.rank}", out Sprite sprite)) 
+            {
+                _view.UpdateIcon(sprite);
+            }
         }
     }
 

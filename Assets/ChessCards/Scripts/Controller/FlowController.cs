@@ -68,16 +68,18 @@ namespace ChessCards
 
 		private void DealCards()
 		{
+            Debug.Log("·ÖÅä" + _matchModel.players.Count);
 			int start = Random.Range(0, _matchModel.players.Count);
 			int count = Consts.TOTAL_CARD_COUNT - Consts.BASE_CARD_COUNT;
 
 			for (int i = 0; i < count; i++)
 			{
-				if (_matchSystem.TryGetPlayer(_matchModel.players[start], out PlayerController player))
+                Debug.Log(start);
+                if (_matchSystem.TryGetPlayerEntity(_matchModel.players[start], out PlayerEntity playerEntity)) 
 				{
-                    if(_cardLibrarySystem.TryPop(out int id))
+					if (_cardLibrarySystem.TryPop(out int id))
                     {
-						player.AddHandCard(id);
+						playerEntity.AddHandCard(id);
 						start = start == _matchModel.players.Count - 1 ? 0 : start + 1;
 					}
 				}
