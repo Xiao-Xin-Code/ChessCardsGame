@@ -7,7 +7,7 @@ namespace ChessCards
 {
 	public class PreparePopController : MonoController
 	{
-        PreparePopView _view;
+        [SerializeField] PreparePopView _view;
 
         MatchModel _matchModel;
 
