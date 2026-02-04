@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using QMVC;
+using UnityEditor;
 using UnityEngine;
 
 namespace ChessCards
@@ -28,7 +29,7 @@ namespace ChessCards
             _matchModel.State.Value = GameState.Init;
             OnStateChanged(_matchModel.State.Value);
 
-			OnStateChanged(GameState.DealCard);
+			OnStateChanged(GameState.Prepare);
 		}
 
 
@@ -40,7 +41,6 @@ namespace ChessCards
             switch (state)
             {
                 case GameState.Init:
-                    
                     this.SendCommand<InitCardLibraryCommand>();
                     break;
                 case GameState.Prepare:
@@ -48,7 +48,6 @@ namespace ChessCards
                     break;
                 case GameState.DealCard:
                     DealCards();
-
 					break;
                 case GameState.CallScore:
                     break;
@@ -95,6 +94,26 @@ namespace ChessCards
             }
             //¸üÐÂTrump
 		}
+
+
+        
+        private void PrepareChangedAndCheck(bool prepare)
+        {
+            if (prepare)
+            {
+                _matchModel.prepareCount++;
+                if(_matchModel.prepareCount >= 3)
+                {
+                    _matchModel.State.Value = GameState.DealCard;
+				}
+            }
+            else
+            {
+                _matchModel.prepareCount--;
+            }
+
+
+        }
 
 
 	}
