@@ -582,6 +582,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767148423}
+  - component: {fileID: 767148425}
+  - component: {fileID: 767148424}
   m_Layer: 5
   m_Name: PreparePop
   m_TagString: Untagged
@@ -609,6 +611,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &767148424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767148422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee1d98e2e93f52499ddf789f2370960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &767148425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767148422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d7c9640ac6f2b46afa67c11725224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prepare: {fileID: 1688895862}
 --- !u!1 &838698934
 GameObject:
   m_ObjectHideFlags: 0
