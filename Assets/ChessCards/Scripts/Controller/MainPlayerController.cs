@@ -65,10 +65,13 @@ namespace ChessCards
             if(role == PlayerRole.Landlord)
             {
                 _matchSystem.TryGetPlayerEntity(ID, out PlayerEntity entity);
+                Debug.Log(_cardLibrarySystem.TrumpCards.Count);
                 foreach (var card in _cardLibrarySystem.TrumpCards)
                 {
                     entity.AddHandCard(card);
                     entity.AddSelectCard(card);
+                    handCards.Arrange();
+                    
                 }
 
 

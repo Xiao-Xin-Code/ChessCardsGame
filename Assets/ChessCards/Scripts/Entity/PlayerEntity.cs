@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace ChessCards
 {
@@ -43,6 +45,7 @@ namespace ChessCards
         public void AddSelectCard(int id)
         {
             SelectCards.Add(id);
+            Debug.Log("Ìí¼ÓÑ¡Ôñ" + id);
             onAddSelectCardEvent?.Invoke(id);
         }
 

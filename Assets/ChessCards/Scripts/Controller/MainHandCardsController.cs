@@ -50,6 +50,10 @@ namespace ChessCards
 			{
 				activeCards[i].RectTransform.SetSiblingIndex(i);
                 float curx = location_x + offset * i;
+                if (localHome.SelectCards.Contains(activeCards[i].ID))
+                {
+                    Debug.Log("c存在"+ activeCards[i].ID);
+                }
                 activeCards[i].RectTransform.anchoredPosition = localHome.SelectCards.Contains(activeCards[i].ID) ? new Vector2(curx, 50) : new Vector2(curx, 0);
 			}
 		}
