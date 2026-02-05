@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using QMVC;
+﻿using QMVC;
 using UnityEngine;
 
 namespace ChessCards
@@ -20,9 +19,10 @@ namespace ChessCards
         CardLibrarySystem _cardLibrarySystem;
         AssetSystem _assetSystem;
         MatchSystem _matchSystem;
+		MatchModel _matchModel;
 
 
-        public override void Init()
+		public override void Init()
         {
             _cardLibrarySystem = this.GetSystem<CardLibrarySystem>();
             _assetSystem = this.GetSystem<AssetSystem>();
@@ -65,14 +65,38 @@ namespace ChessCards
             if(role == PlayerRole.Landlord)
             {
                 _matchSystem.TryGetPlayerEntity(ID, out PlayerEntity entity);
-
                 foreach (var card in _cardLibrarySystem.TrumpCards)
                 {
                     entity.AddHandCard(card);
                     entity.AddSelectCard(card);
                 }
+
+
+                //初始设置
+                _matchSystem.SetPreviousHome(ID);
+                _matchSystem.SetCurrentHome(ID);
+                //直接设置
+                this.SendCommand(new AffordVisibleCommand(true));
+                this.SendCommand(new ActiveAffordCommand(true, false));
+
             }
         }
+
+        public void OnTurnChanged()
+        {
+            if(_matchModel.State.Value == GameState.CallScore)
+            {
+
+            }
+
+            
+            
+
+
+
+        }
+
+
 
 
 		#region HandCards操作
@@ -86,7 +110,6 @@ namespace ChessCards
         {
 			if(_cardLibrarySystem.TryGetCardEntity(entityId,out CardEntity entity))
             {
-                Debug.Log($"触发添加{entity}");
                 handCards.AddHandCard(entity);
 			}
         }

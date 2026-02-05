@@ -39,6 +39,7 @@ namespace ChessCards
             _matchSystem.AddPlayerEntity(localId, new PlayerEntity(localPlayer.OnRoleChanged, localPlayer.AddHandCard, localPlayer.RemoveHandCard));
             _matchSystem.AddPlayerEntity(leftId, new PlayerEntity(leftPlayer.OnRoleChanged, leftPlayer.AddHandCard, leftPlayer.RemoveHandCard));
             _matchSystem.AddPlayerEntity(rightId, new PlayerEntity(rightPlayer.OnRoleChanged, rightPlayer.AddHandCard, rightPlayer.RemoveHandCard));
+            _matchSystem.SetLocalHome(localId);
 		}
 
         

@@ -16,7 +16,17 @@ namespace ChessCards
             _matchModel = this.GetModel<MatchModel>();
 
 			_view.RegisterPreparePressed(OnPreparePressed);
+
+
+            this.RegisterEvent<PrepareVisibleEvent>(PrepareVisible);
         }
+
+
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
 
 
         private void OnPreparePressed()
@@ -26,6 +36,15 @@ namespace ChessCards
             gameObject.SetActive(false);
 
 		}
+
+
+
+        private void PrepareVisible(PrepareVisibleEvent evt)
+        {
+            gameObject.SetActive(evt.visible);
+        }
+
+
 	}
 }
 

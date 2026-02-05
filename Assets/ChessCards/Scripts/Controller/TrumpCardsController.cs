@@ -35,12 +35,10 @@ namespace ChessCards
                 {
                     if (_assetSystem.TryGetRankIcon($"{cardEntity.suit}_{cardEntity.rank}", out Sprite sprite))
                     {
-                        Debug.Log("Ìí¼Óµ×ÅÆ" + sprite.name);
                         sprites.Add(sprite);
                     }
                 }
             }
-
             _view.SetTrumpCards(sprites);
         }
 

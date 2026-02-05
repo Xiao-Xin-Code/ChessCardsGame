@@ -10,6 +10,7 @@ namespace ChessCards
 		public Dictionary<int, PlayerEntity> playerEntitys = new Dictionary<int, PlayerEntity>();
 		public int prepareCount = 0;
 		public int previousHome;
+		public int currentHome;
 		public int localHome;
 		public List<int> previousCards = new List<int>();
 

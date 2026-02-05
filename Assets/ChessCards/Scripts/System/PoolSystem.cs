@@ -9,6 +9,8 @@ namespace ChessCards
     {
         AssetSystem _assetSystem;
 
+        ComponentPool<SFXController> sfxPool;
+
 
         Transform poolRoot;
 
@@ -17,7 +19,21 @@ namespace ChessCards
         {
             _assetSystem = this.GetSystem<AssetSystem>();
             poolRoot = new GameObject("Pools").transform;
+
+
+            Transform sfxParent = new GameObject(_assetSystem.sfx.GetType().Name).transform;
+            sfxParent.SetParent(poolRoot);
+            sfxPool = new ComponentPool<SFXController>(_assetSystem.sfx, sfxParent);
 		}
+
+
+
+
+        public void RecycleSFX(SFXController sfx)
+        {
+            sfxPool.Recycle(sfx);
+        }
+
 
     }
 

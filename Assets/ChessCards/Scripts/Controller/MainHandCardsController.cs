@@ -17,12 +17,14 @@ namespace ChessCards
 
         AssetSystem _assetSystem;
         CardLibrarySystem _cardLibrarySystem;
+        MatchSystem _matchSystem;
         public float offset = 60;
 
         public override void Init()
         {
             _assetSystem = this.GetSystem<AssetSystem>();
-            _cardLibrarySystem = this.GetSystem<CardLibrarySystem>();
+            _matchSystem = this.GetSystem<MatchSystem>();
+			_cardLibrarySystem = this.GetSystem<CardLibrarySystem>();
             cardPool = new MonoPool<CardController>(_assetSystem.mainCard, transform);
 		}
 
@@ -39,6 +41,8 @@ namespace ChessCards
 
         public void Arrange()
         {
+            _matchSystem.TryGetLocalEntity(out PlayerEntity localHome);
+
             float width = _assetSystem.mainCard.RectTransform.rect.width;
 			float total_width = activeCards.Count > 0 ? width + offset * (activeCards.Count - 1) : 0;
             float location_x = -(total_width / 2 - width / 2);
@@ -46,7 +50,7 @@ namespace ChessCards
 			{
 				activeCards[i].RectTransform.SetSiblingIndex(i);
                 float curx = location_x + offset * i;
-                activeCards[i].RectTransform.anchoredPosition = new Vector2(curx, 0);
+                activeCards[i].RectTransform.anchoredPosition = localHome.SelectCards.Contains(activeCards[i].ID) ? new Vector2(curx, 50) : new Vector2(curx, 0);
 			}
 		}
 
@@ -55,6 +59,7 @@ namespace ChessCards
             CardController card = cardPool.Get();
             activeCards.Add(card);
             card.SetEntity(cardEntity);
+            Sort();
             Arrange();
 		}
 
@@ -70,9 +75,18 @@ namespace ChessCards
                     break;
                 }
 			}
-            Arrange();
+			Sort();
+			Arrange();
 		}
 
         
+
+        public void OnSelectChanged()
+        {
+            
+
+
+        }
+
     }
 }

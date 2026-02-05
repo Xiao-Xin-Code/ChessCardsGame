@@ -38,15 +38,15 @@ namespace ChessCards
 
         public void RegisterPointerDown(Action<PointerEventData> action)
         {
-
+            onPointerDownEvent += action;
         }
 
         public void RegisterPointerUp(Action<PointerEventData> action)
         {
-
+            onPointerUpEvent += action;
         }
 
-        public void UnRegisterDown(Action<PointerEventData> action)
+        public void UnRegisterPointerDown(Action<PointerEventData> action)
         {
 
         }

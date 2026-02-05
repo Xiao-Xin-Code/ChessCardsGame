@@ -54,9 +54,17 @@ namespace ChessCards
         {
             if(_matchSystem.TryGetLocalEntity(out PlayerEntity localHome))
             {
-                localHome.AddSelectCard(ID);
+                if (localHome.SelectCards.Contains(ID))
+                {
+					localHome.RemoveSelectCard(ID);
+                    _view.RectTransform.DOAnchorPosY(0, 0.1f);
+				}
+                else
+                {
+					localHome.AddSelectCard(ID);
+					_view.RectTransform.DOAnchorPosY(50, 0.1f);
+				}
             }
-
 		}
 
 
@@ -65,7 +73,6 @@ namespace ChessCards
             ID = entity.id;
             if (_assetSystem.TryGetRankIcon($"{entity.suit}_{entity.rank}", out Sprite sprite)) 
             {
-                Debug.Log("´æÔÚ¸üÐÂ");
                 _view.UpdateIcon(sprite);
             }
         }

@@ -10,6 +10,7 @@ namespace ChessCards
             RegisterSystem<PoolSystem>(new PoolSystem());
             RegisterSystem<CardLibrarySystem>(new CardLibrarySystem());
             RegisterSystem<MatchSystem>(new MatchSystem());
+            RegisterSystem<AudioSystem>(new AudioSystem());
             RegisterModel<MatchModel>(new MatchModel());
             RegisterModel<CardLibraryModel>(new CardLibraryModel());
         }

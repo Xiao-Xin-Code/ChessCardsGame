@@ -13,8 +13,10 @@ namespace ChessCards
         public List<int> SelectCards { get; } = new List<int>();
 
         event Action<PlayerRole> onRoleChangeEvent;
+        event Action onTurnEvent;
         event Action<int> onAddHandCardEvent;
         event Action<int> onRemoveHandCardEvent;
+        event Action onSelectChangeEvent;
 		event Action<int> onAddSelectCardEvent;
 		event Action<int> onRemoveSelectCardEvent;
 
@@ -52,11 +54,13 @@ namespace ChessCards
 
 
 
-        public PlayerEntity(Action<PlayerRole> onRole = null, Action<int> addHand = null, Action<int> removeHand = null)
+        public PlayerEntity(Action<PlayerRole> onRole = null, Action<int> addHand = null, Action<int> removeHand = null,Action selectEvent = null)
         {
             onRoleChangeEvent = onRole;
+            //onTurnEvent = onTurn;
             onAddHandCardEvent = addHand;
             onRemoveHandCardEvent = removeHand;
+            onSelectChangeEvent = selectEvent;
         }
 
 
